@@ -15,8 +15,7 @@ function SearchPage() {
     const [selectedBreed, setSelectedBreed] = useState<string>("");
 
     useEffect(() => {
-        // Fetch available breeds
-        const fetchBreeds = async () => {
+        (async () => {
             try {
                 const response = await axios.get(
                     "https://frontend-take-home-service.fetch.com/dogs/breeds",
@@ -26,8 +25,7 @@ function SearchPage() {
             } catch (error) {
                 console.error("Error fetching breeds", error);
             }
-        };
-        fetchBreeds();
+        })();
     }, []);
 
     const searchDogs = async () => {
