@@ -10,7 +10,7 @@ function LoginPage() {
     const handleLogin = async () => {
         try {
             await axios.post("https://frontend-take-home-service.fetch.com/auth/login",
-                {name, email },
+                { name, email },
                 { withCredentials: true }
             );
             navigate("/search");
@@ -29,10 +29,10 @@ function LoginPage() {
                 onChange={(e) => setName(e.target.value)}
                 />
             <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
             />
             <button onClick={handleLogin}>Login</button>
         </div>

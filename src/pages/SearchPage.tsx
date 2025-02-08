@@ -13,7 +13,9 @@ function SearchPage() {
     const [dogs, setDogs] = useState<Dog[]>([]);
     const [breeds, setBreeds] = useState<string[]>([]);
     const [selectedBreed, setSelectedBreed] = useState<string>("");
+    const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
+    // Fetch breeds
     useEffect(() => {
         (async () => {
             try {
@@ -27,6 +29,37 @@ function SearchPage() {
             }
         })();
     }, []);
+
+    // Fetch dogs
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await axios.get(
+                    "https://frontend-take-home-service.fetch.com/dogs/search",
+                    {
+                        withCredentials: true,
+                        params: {
+                            sort: `breed:${sortDirection}`, // Sort alphabetically by breed
+                            size: 25,          // Fetch 25 results
+                        }
+                    }
+                );
+
+                // Fetch details of each dog using the returned result IDs
+                const dogIds = response.data.resultIds;
+                if (dogIds.length) {
+                    const dogDetailsResponse = await axios.post(
+                        "https://frontend-take-home-service.fetch.com/dogs",
+                        dogIds,
+                        { withCredentials: true }
+                    );
+                    setDogs(dogDetailsResponse.data);
+                }
+            } catch (error) {
+                console.error("Error fetching dogs", error);
+            }
+        })();
+    }, [sortDirection]);
 
     const searchDogs = async () => {
         try {
@@ -69,6 +102,9 @@ function SearchPage() {
                 ))}
             </select>
             <button onClick={searchDogs}>Search</button>
+            <button onClick={() => setSortDirection(sortDirection === "asc" ? "desc" : "asc")}>
+                Sort by breed: {sortDirection === "asc" ? "Ascending" : "Descending"}
+            </button>
 
             <div>
                 <h2>Results</h2>
