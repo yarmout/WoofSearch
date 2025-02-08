@@ -47,24 +47,32 @@ function SearchPage() {
                     }
                 );
 
-                // Fetch details of each dog using the returned result IDs
-                const dogIds = response.data.resultIds;
                 setNextPageQuery(response.data.next || null);
                 setPrevPageQuery(response.data.prev || null);
 
-                if (dogIds.length) {
-                    const dogDetailsResponse = await axios.post(
-                        "https://frontend-take-home-service.fetch.com/dogs",
-                        dogIds,
-                        { withCredentials: true }
-                    );
-                    setDogs(dogDetailsResponse.data);
-                }
+                // Fetch details of each dog using the returned result IDs
+                const dogIds = response.data.resultIds;
+                await fetchDogsByIds(dogIds);
+
             } catch (error) {
                 console.error("Error fetching dogs", error);
             }
         })();
     }, [sortDirection]);
+
+    const fetchDogsByIds = async (dogIds: string[]) => {
+        if (!dogIds.length) return;
+        try {
+            const dogDetailsResponse = await axios.post(
+                "https://frontend-take-home-service.fetch.com/dogs",
+                dogIds,
+                { withCredentials: true }
+            );
+            setDogs(dogDetailsResponse.data);
+        } catch (error) {
+            console.error("Error fetching dogs", error);
+        }
+    }
 
     // Handle pagination
     const handleNextPage = async () => {
@@ -80,14 +88,7 @@ function SearchPage() {
             setPrevPageQuery(response.data.prev || null);
 
             const dogIds = response.data.resultIds;
-            if (dogIds.length) {
-                const dogDetailsResponse = await axios.post(
-                    "https://frontend-take-home-service.fetch.com/dogs",
-                    dogIds,
-                    { withCredentials: true }
-                );
-                setDogs(dogDetailsResponse.data);
-            }
+            await fetchDogsByIds(dogIds);
         } catch (error) {
             console.error("Error fetching next page", error);
         }
@@ -106,14 +107,7 @@ function SearchPage() {
             setPrevPageQuery(response.data.prev || null);
 
             const dogIds = response.data.resultIds;
-            if (dogIds.length) {
-                const dogDetailsResponse = await axios.post(
-                    "https://frontend-take-home-service.fetch.com/dogs",
-                    dogIds,
-                    { withCredentials: true }
-                );
-                setDogs(dogDetailsResponse.data);
-            }
+            await fetchDogsByIds(dogIds);
         } catch (error) {
             console.error("Error fetching previous page", error);
         }
@@ -121,7 +115,6 @@ function SearchPage() {
 
     const searchDogs = async () => {
         try {
-            // Step 1: Fetch Dog IDs by Breed
             const response = await axios.get(
                 "https://frontend-take-home-service.fetch.com/dogs/search",
                 {
@@ -129,19 +122,11 @@ function SearchPage() {
                     withCredentials: true,
                 }
             );
-            const dogIds = response.data.resultIds;
             setNextPageQuery(response.data.next || null);
             setPrevPageQuery(response.data.prev || null);
 
-            // Step 2: Fetch Full Dog Details by IDs
-            if (dogIds.length > 0) {
-                const dogResponse = await axios.post(
-                    "https://frontend-take-home-service.fetch.com/dogs",
-                    dogIds.slice(0, 10), // limit to 10 for demo purposes
-                    { withCredentials: true }
-                );
-                setDogs(dogResponse.data);
-            }
+            const dogIds = response.data.resultIds;
+            await fetchDogsByIds(dogIds);
         } catch (error) {
             console.error("Error searching dogs", error);
         }
