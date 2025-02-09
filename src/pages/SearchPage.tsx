@@ -1,3 +1,4 @@
+import React from "react";
 import {useState, useEffect} from "react";
 import axios from "axios";
 
@@ -17,6 +18,7 @@ function SearchPage() {
     const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
     const [nextPageQuery, setNextPageQuery] = useState<string | null>(null);
     const [prevPageQuery, setPrevPageQuery] = useState<string | null>(null);
+    const [favorites, setFavorites] = useState<string[]>([]);
 
     // Fetch breeds
     useEffect(() => {
@@ -125,6 +127,44 @@ function SearchPage() {
         })
     }
 
+    const toggleFavorite = (dogId: string) => {
+        setFavorites((prevFavorites) =>
+        prevFavorites.includes(dogId)
+        ? prevFavorites.filter((id) => id !== dogId)
+        : [...prevFavorites, dogId]
+        );
+    };
+
+    const generateMatch = async () => {
+        if (favorites.length === 0) {
+            alert("Please select at least one favorite dog");
+            return;
+        }
+
+        try {
+            const response = await axios.post(
+                "https://frontend-take-home-service.fetch.com/dogs/match",
+                favorites,
+                { withCredentials: true }
+            );
+
+            const matchedDogId = response.data.match;
+
+            // Fetch details for the matched dog
+            const dogDetailsResponse = await axios.post(
+                "https://frontend-take-home-service.fetch.com/dogs",
+                [matchedDogId],
+                { withCredentials: true }
+            );
+
+            const matchedDog = dogDetailsResponse.data[0];
+
+            alert(`Your match is: ${matchedDog.name} 🐾`);
+        } catch (error) {
+            console.error("Error generating match", error);
+        }
+    }
+
     return (
         <div>
             <h1>Search Dogs</h1>
@@ -157,6 +197,12 @@ function SearchPage() {
             </div>
 
             <div>
+                <button onClick={generateMatch} disabled={favorites.length === 0}>
+                    Generate Match
+                </button>
+            </div>
+
+            <div>
                 <h2>Results</h2>
                 <ul>
                     {dogs.map((dog) => (
@@ -166,6 +212,15 @@ function SearchPage() {
                             <p><strong>Age:</strong> {dog.age}</p>
                             <p><strong>Zip Code:</strong> {dog.zip_code}</p>
                             <p><strong>Breed:</strong> {dog.breed}</p>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    checked={favorites.includes(dog.id)}
+                                    onChange={() => toggleFavorite(dog.id)}
+                                />
+                                Favorite
+                            </label>
                         </li>
                     ))}
                 </ul>
