@@ -1,4 +1,3 @@
-import React from "react";
 import {useState, useEffect} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -115,19 +114,6 @@ function SearchPage() {
         }
     }
 
-    const handleBreedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const breed = e.target.value;
-        setSelectedBreeds((prevSelectedBreeds) => {
-            if (prevSelectedBreeds.includes(breed)) {
-                // If the breed is already selected, remove it
-                return prevSelectedBreeds.filter((b) => b !== breed);
-            } else {
-                // Otherwise, add it to the list of selected breeds
-                return [...prevSelectedBreeds, breed];
-            }
-        })
-    }
-
     const toggleFavorite = (dogId: string) => {
         setFavorites((prevFavorites) =>
         prevFavorites.includes(dogId)
@@ -161,10 +147,27 @@ function SearchPage() {
             const matchedDog = dogDetailsResponse.data[0];
 
             alert(`Your match is: ${matchedDog.name} 🐾`);
-            window.open(`/dog/${matchedDogId}`, `_blank`, "noopener, noreferrer");
+            window.open(
+                `/dog/${matchedDog.name.replace(/\s+/g, '-').toLowerCase()}/${matchedDogId}`,
+                `_blank`,
+                "noopener, noreferrer"
+            );
         } catch (error) {
             console.error("Error generating match", error);
         }
+    }
+
+    const handleBreedSelection = (selectedBreed: string) => {
+        setSelectedBreeds((currentBreeds) => [...currentBreeds, selectedBreed]);
+    }
+
+    const removeSelectedBreed = (breedToRemove: string) => {
+        setSelectedBreeds((currentBreeds) =>
+            currentBreeds.filter((breed) => breed !== breedToRemove));
+    }
+
+    const clearAllSelectedBreeds = () => {
+        setSelectedBreeds([]);
     }
 
     return (
@@ -172,19 +175,48 @@ function SearchPage() {
             <h1>Search Dogs</h1>
             <h3>Select Breeds</h3>
             <div>
-                {breeds.map((breed) => (
-                    <div key={breed}>
-                        <input
-                            type="checkbox"
-                            id={breed}
-                            value={breed}
-                            checked={selectedBreeds.includes(breed)}
-                            onChange={(e) => handleBreedChange(e)}
-                        />
-                        <label htmlFor={breed}>{breed}</label>
-                    </div>
-                ))}
+                <label htmlFor="breed-filter">Filter by Breed:</label>
+                <select
+                    id="breed-filter"
+                    onChange={(e) => {
+                        const selectedBreed = e.target.value;
+                        handleBreedSelection(selectedBreed);
+                    }}
+                >
+                    <option value="">Select a breed</option>
+                    {breeds.map((breed) => (
+                        <option key={breed} value={breed}>
+                            {breed}
+                        </option>
+                    ))}
+                </select>
             </div>
+
+            {/* View/Remove selected breed filters */}
+            {selectedBreeds.length > 0 && (
+                <div>
+                    <h4>Selected Filters:</h4>
+                    {selectedBreeds.map((breed) => (
+                        <div key={breed}>
+                            {breed}
+                            <button
+                                onClick={() =>
+                                    removeSelectedBreed(breed)
+                                }>
+                                Remove
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {/*Remove all breed filters*/}
+            {selectedBreeds.length > 0 && (
+                <div>
+                    <button onClick={clearAllSelectedBreeds}>Clear All</button>
+                </div>
+            )}
+
             <button onClick={() => setSortDirection(sortDirection === "asc" ? "desc" : "asc")}>
                 Sort by breed: {sortDirection === "asc" ? "Ascending" : "Descending"}
             </button>

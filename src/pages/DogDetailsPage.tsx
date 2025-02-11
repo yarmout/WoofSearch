@@ -55,7 +55,7 @@ function DogDetailsPage() {
             {dog && (
                 <>
                     <h1>{dogName}</h1>
-                    <img src={dog.img} alt={dog?.name} />
+                    <img src={dog.img} alt={dog.name} />
                     <p><strong>Breed:</strong> {dog.breed}</p>
                     <p><strong>Age:</strong> {dog.age}</p>
                     <p><strong>Zip Code:</strong> {dog.zip_code}</p>
