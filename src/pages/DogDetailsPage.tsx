@@ -21,7 +21,7 @@ interface Location {
 }
 
 function DogDetailsPage() {
-    const { dogId } = useParams<{ dogId: string }>();
+    const { dogId, dogName } = useParams<{ dogId: string; dogName: string }>();
     const [dog, setDog] = useState<Dog | null>(null);
     const [location, setLocation] = useState<Location | null>(null);
 
@@ -54,8 +54,8 @@ function DogDetailsPage() {
         <div>
             {dog && (
                 <>
-                    <h1>{dog.name}</h1>
-                    <img src={dog.img} alt={dog?.name} style={{width: "300px"}}/>
+                    <h1>{dogName}</h1>
+                    <img src={dog.img} alt={dog?.name} />
                     <p><strong>Breed:</strong> {dog.breed}</p>
                     <p><strong>Age:</strong> {dog.age}</p>
                     <p><strong>Zip Code:</strong> {dog.zip_code}</p>

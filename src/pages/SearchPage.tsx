@@ -210,7 +210,7 @@ function SearchPage() {
                     {dogs.map((dog) => (
                         <li key={dog.id}>
                             <Link
-                                to={`/dog/${dog.id}`}
+                                to={`/dog/${dog.name.replace(/\s+/g, '-').toLowerCase()}/${dog.id}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
