@@ -1,6 +1,7 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface Dog {
     id: string;
@@ -160,6 +161,7 @@ function SearchPage() {
             const matchedDog = dogDetailsResponse.data[0];
 
             alert(`Your match is: ${matchedDog.name} 🐾`);
+            window.open(`/dog/${matchedDogId}`, `_blank`, "noopener, noreferrer");
         } catch (error) {
             console.error("Error generating match", error);
         }
@@ -207,12 +209,17 @@ function SearchPage() {
                 <ul>
                     {dogs.map((dog) => (
                         <li key={dog.id}>
-                            <img src={dog.img} alt={dog.name} style={{ width: "150px" }} />
-                            <p><strong>Name:</strong> {dog.name}</p>
-                            <p><strong>Age:</strong> {dog.age}</p>
-                            <p><strong>Zip Code:</strong> {dog.zip_code}</p>
-                            <p><strong>Breed:</strong> {dog.breed}</p>
-
+                            <Link
+                                to={`/dog/${dog.id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <img src={dog.img} alt={dog.name} style={{width: "150px"}}/>
+                                <p><strong>Name:</strong> {dog.name}</p>
+                                <p><strong>Age:</strong> {dog.age}</p>
+                                <p><strong>Zip Code:</strong> {dog.zip_code}</p>
+                                <p><strong>Breed:</strong> {dog.breed}</p>
+                            </Link>
                             <label>
                                 <input
                                     type="checkbox"
