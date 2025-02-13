@@ -61,7 +61,7 @@ Here’s an overview of the main structure of the project:
 │   ├── pages/               # Pages like LoginPage
 │   ├── styles/              # CSS files
 │   └── App.tsx              # Main app entry file
-├── index.html               # HTML template
+├── index.html               # HTML base
 ├── vite.config.ts           # Vite configuration
 ├── tsconfig.json            # TypeScript configuration
 ├── package.json             # Dependencies and npm scripts
@@ -73,9 +73,10 @@ Here’s an overview of the main structure of the project:
 
 ## 💾 Preview
 
-Here’s a sneak peek of how it looks:
+Here’s a preview of the login page:
 
-![Login Preview](placeholder)
+![Login Preview](https://github.com/user-attachments/assets/c5445c0b-580a-4ac8-9861-8e6af88c6a58)
+
 
 ---
 
