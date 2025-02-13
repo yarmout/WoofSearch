@@ -68,9 +68,6 @@ function DogDetailsPage() {
                         <p>
                             <strong>Age:</strong> {dog.age} years
                         </p>
-                        <p>
-                            <strong>Zip Code:</strong> {dog.zip_code}
-                        </p>
                     </div>
                 </div>
             )}
@@ -86,6 +83,9 @@ function DogDetailsPage() {
                     </p>
                     <p>
                         <strong>County:</strong> {location.county}
+                    </p>
+                    <p>
+                        <strong>Zip Code:</strong> {location.zip_code}
                     </p>
                 </div>
             )}
