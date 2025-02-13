@@ -1,0 +1,106 @@
+/* Root variables for theming */
+:root {
+    --color-primary: #f9a826;
+    --color-secondary: #f7f7f7;
+    --color-accent: #4caf50;
+    --color-border: #ccc;
+    --font-family: "Poppins", sans-serif, Arial;
+    --font-size-base: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family), serif;
+    background: var(--color-secondary) url('../assets/login-bg.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* WoofSearch branding */
+.site-name {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Main container */
+.login-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    max-width: 400px;
+    width: calc(100% - 40px);
+    text-align: center;
+}
+
+/* Title and subtitle */
+.login-title {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* Form inputs */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.login-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(249, 168, 38, 0.5);
+}
+
+/* Button */
+.login-button {
+    padding: 12px;
+    font-size: 1rem;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-button:hover {
+    background: #e18a00;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Fade-in animation */
+.login-page {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

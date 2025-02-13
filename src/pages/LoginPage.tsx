@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./LoginPage.css";
 
 function LoginPage() {
     const [name, setName] = useState("");
@@ -20,22 +21,33 @@ function LoginPage() {
     };
 
     return (
-        <div>
-            <h1>Login</h1>
-            <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                />
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <button onClick={handleLogin}>Login</button>
+        <div className="login-page">
+            <h1 className="site-name">🐾 WoofSearch</h1>
+            <div className="login-container">
+                <h1 className="login-title">Welcome back!</h1>
+                <p className="login-subtitle">Log in to find your perfect canine companion!</p>
+                <div className="login-form">
+                    <input
+                        className="login-input"
+                        type="text"
+                        placeholder="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <input
+                        className="login-input"
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <button className="login-button" onClick={handleLogin}>
+                        Login
+                    </button>
+                </div>
+            </div>
         </div>
+
     );
 }
 
