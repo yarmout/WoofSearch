@@ -7,11 +7,15 @@
     --font-family: "Poppins", sans-serif, Arial;
     --font-size-base: 16px;
 }
-
 body {
     margin: 0;
+}
+
+
+.login-page-container {
+    margin: 0;
     font-family: var(--font-family), serif;
-    background: var(--color-secondary) url('../assets/login-bg.jpeg') no-repeat center center fixed;
+    background: var(--color-secondary) url('../../assets/login-bg.jpeg') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -30,7 +34,7 @@ body {
 }
 
 /* Main container */
-.login-container {
+.login-form-container {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
