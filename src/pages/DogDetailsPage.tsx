@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./styles/DogDetailsPage.css";
 
 interface Dog {
     id: string;
@@ -51,25 +52,45 @@ function DogDetailsPage() {
     }, [dogId]);
 
     return (
-        <div>
+        <div className="dog-details-page">
             {dog && (
-                <>
-                    <h1>{dogName}</h1>
-                    <img src={dog.img} alt={dog.name} />
-                    <p><strong>Breed:</strong> {dog.breed}</p>
-                    <p><strong>Age:</strong> {dog.age}</p>
-                    <p><strong>Zip Code:</strong> {dog.zip_code}</p>
-                </>
+                <div className="dog-details-card">
+                    <h1 className="dog-details-title">{dogName}</h1>
+                    <img
+                        src={dog.img}
+                        alt={dog.name}
+                        className="dog-details-image"
+                    />
+                    <div className="dog-info">
+                        <p>
+                            <strong>Breed:</strong> {dog.breed}
+                        </p>
+                        <p>
+                            <strong>Age:</strong> {dog.age} years
+                        </p>
+                        <p>
+                            <strong>Zip Code:</strong> {dog.zip_code}
+                        </p>
+                    </div>
+                </div>
             )}
 
             {location && (
-                <>
-                    <h2>Location Details</h2>
-                    <p><strong>City:</strong> {location.city}</p>
-                    <p><strong>State:</strong> {location.state}</p>
-                    <p><strong>County:</strong> {location.county}</p>
-                </>
+                <div className="location-info">
+                    <h2 className="section-header">Location Details</h2>
+                    <p>
+                        <strong>City:</strong> {location.city}
+                    </p>
+                    <p>
+                        <strong>State:</strong> {location.state}
+                    </p>
+                    <p>
+                        <strong>County:</strong> {location.county}
+                    </p>
+                </div>
             )}
+
+            <a href="/search" className="back-button">Back to Search</a>
         </div>
     );
 }

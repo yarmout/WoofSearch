@@ -147,7 +147,6 @@ function SearchPage() {
 
             const matchedDog = dogDetailsResponse.data[0];
 
-            alert(`Your match is: ${matchedDog.name} 🐾`);
             window.open(
                 `/dog/${matchedDog.name.replace(/\s+/g, '-').toLowerCase()}/${matchedDogId}`,
                 `_blank`,
