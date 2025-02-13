@@ -31,7 +31,7 @@ function SearchPage() {
                 );
                 setBreeds(response.data);
             } catch (error) {
-                console.error("Error fetching breeds", error);
+                alert('Something went wrong. Please try again later.');
             }
         })();
     }, []);
@@ -57,7 +57,7 @@ function SearchPage() {
                 const dogIds = response.data.resultIds;
                 await fetchDogsByIds(dogIds);
             } catch (error) {
-                console.error("Error searching dogs", error);
+                alert('Something went wrong. Please try again later.');
             }
         })();
     }, [selectedBreeds, sortDirection]);
@@ -72,7 +72,7 @@ function SearchPage() {
             );
             setDogs(dogDetailsResponse.data);
         } catch (error) {
-            console.error("Error fetching dogs", error);
+            alert('Something went wrong. Please try again later.');
         }
     }
 
@@ -92,7 +92,7 @@ function SearchPage() {
             const dogIds = response.data.resultIds;
             await fetchDogsByIds(dogIds);
         } catch (error) {
-            console.error("Error fetching next page", error);
+            alert('Something went wrong. Please try again later.');
         }
     }
 
@@ -111,7 +111,7 @@ function SearchPage() {
             const dogIds = response.data.resultIds;
             await fetchDogsByIds(dogIds);
         } catch (error) {
-            console.error("Error fetching previous page", error);
+            alert('Something went wrong. Please try again later.');
         }
     }
 
@@ -153,7 +153,7 @@ function SearchPage() {
                 "noopener, noreferrer"
             );
         } catch (error) {
-            console.error("Error generating match", error);
+            alert('Something went wrong. Please try again later.');
         }
     }
 

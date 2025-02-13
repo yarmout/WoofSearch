@@ -16,7 +16,7 @@ function LoginPage() {
             );
             navigate("/search");
         } catch (error) {
-            console.log("Login failed", error);
+            alert('Something went wrong. Please try again later.');
         }
     };
 
