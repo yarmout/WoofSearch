@@ -6,11 +6,15 @@
     --color-border: #ccc;
     --font-family: "Poppins", sans-serif, Arial;
     --font-size-base: 16px;
+    --color-text-primary: #333; /* Dark gray for high readability */
+    --color-text-secondary: #777; /* Light gray for supporting text */
+    --color-primary-light: #ffb380;
+    --color-primary-dark: #cc5800;
 }
+
 body {
     margin: 0;
 }
-
 
 .login-page-container {
     margin: 0;

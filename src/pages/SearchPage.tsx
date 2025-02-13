@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./styles/SearchPage.css";
 
 interface Dog {
     id: string;
@@ -171,98 +172,111 @@ function SearchPage() {
     }
 
     return (
-        <div>
-            <h1>Search Dogs</h1>
-            <h3>Select Breeds</h3>
-            <div>
-                <label htmlFor="breed-filter">Filter by Breed:</label>
+        <div className="search-page">
+            <h1 className="page-title">Find Your Perfect Dog</h1>
+            <div className="filter-bar">
                 <select
-                    id="breed-filter"
+                    className="breed-selector"
                     onChange={(e) => {
                         const selectedBreed = e.target.value;
                         handleBreedSelection(selectedBreed);
                     }}
                 >
-                    <option value="">Select a breed</option>
+                    <option value="">All Breeds</option>
                     {breeds.map((breed) => (
                         <option key={breed} value={breed}>
                             {breed}
                         </option>
                     ))}
                 </select>
+
+                <button
+                    className="sort-button"
+                    onClick={() =>
+                        setSortDirection(sortDirection === "asc" ? "desc" : "asc")
+                    }
+                >
+                    Sort by breed: {sortDirection === "asc" ? "Ascending" : "Descending"}
+                </button>
+
+                {/* View/Remove selected breed filters */}
+                {selectedBreeds.length > 0 && (
+                    <div className="selected-filters">
+                        {selectedBreeds.map((breed) => (
+                            <div key={breed} className="selected-filter">
+                                {breed}
+                                <button
+                                    className="remove-button"
+                                    onClick={() =>
+                                        removeSelectedBreed(breed)
+                                    }>
+                                    ✕
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {/*Remove all breed filters*/}
+                {selectedBreeds.length > 0 && (
+                    <div>
+                        <button
+                            className="clear-all-button"
+                            onClick={clearAllSelectedBreeds}>Clear All</button>
+                    </div>
+                )}
             </div>
 
-            {/* View/Remove selected breed filters */}
-            {selectedBreeds.length > 0 && (
-                <div>
-                    <h4>Selected Filters:</h4>
-                    {selectedBreeds.map((breed) => (
-                        <div key={breed}>
-                            {breed}
-                            <button
-                                onClick={() =>
-                                    removeSelectedBreed(breed)
-                                }>
-                                Remove
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            )}
-
-            {/*Remove all breed filters*/}
-            {selectedBreeds.length > 0 && (
-                <div>
-                    <button onClick={clearAllSelectedBreeds}>Clear All</button>
-                </div>
-            )}
-
-            <button onClick={() => setSortDirection(sortDirection === "asc" ? "desc" : "asc")}>
-                Sort by breed: {sortDirection === "asc" ? "Ascending" : "Descending"}
+            <button
+                className="generate-match-button"
+                onClick={generateMatch} disabled={favorites.length === 0}>
+                Generate Match
             </button>
 
-            <div>
-                <button onClick={handlePrevPage} disabled={!prevPageQuery}>
+            <div className="dog-grid">
+                {dogs.map((dog) => (
+                    <div className="dog-card" key={dog.id}>
+                        <Link
+                            to={`/dog/${dog.name.replace(/\s+/g, '-').toLowerCase()}/${dog.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img className="dog-image" src={dog.img} alt={dog.name} />
+                            <div className="dog-info">
+                                <h3 className="dog-name">{dog.name}</h3>
+                                <p className="dog-breed">{dog.breed}</p>
+                                <p className="dog-age">{dog.age} years old</p>
+                                <p className="dog-location">Zip: {dog.zip_code}</p>
+                            </div>
+                        </Link>
+                    <button
+                        className={`favorite-button ${
+                            favorites.includes(dog.id) ? "favorited" : ""
+                        }`}
+                        onClick={() => toggleFavorite(dog.id)}
+                    >
+                        {favorites.includes(dog.id) ? "❤️ Favorite" : "♡ Favorite"}
+                    </button>
+                </div>
+
+
+                ))}
+            </div>
+            <div className="pagination-controls">
+                <button
+                    className="pagination-button"
+                    onClick={handlePrevPage}
+                    disabled={!prevPageQuery}
+                >
                     Previous
                 </button>
-                <button onClick={handleNextPage} disabled={!nextPageQuery}>
+                <button
+                    className="pagination-button"
+                    onClick={handleNextPage}
+                    disabled={!nextPageQuery}
+                >
                     Next
                 </button>
-            </div>
-
-            <div>
-                <button onClick={generateMatch} disabled={favorites.length === 0}>
-                    Generate Match
-                </button>
-            </div>
-
-            <div>
-                <h2>Results</h2>
-                <ul>
-                    {dogs.map((dog) => (
-                        <li key={dog.id}>
-                            <Link
-                                to={`/dog/${dog.name.replace(/\s+/g, '-').toLowerCase()}/${dog.id}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <img src={dog.img} alt={dog.name} style={{width: "150px"}}/>
-                                <p><strong>Name:</strong> {dog.name}</p>
-                                <p><strong>Age:</strong> {dog.age}</p>
-                                <p><strong>Zip Code:</strong> {dog.zip_code}</p>
-                                <p><strong>Breed:</strong> {dog.breed}</p>
-                            </Link>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={favorites.includes(dog.id)}
-                                    onChange={() => toggleFavorite(dog.id)}
-                                />
-                                Favorite
-                            </label>
-                        </li>
-                    ))}
-                </ul>
             </div>
         </div>
     );
