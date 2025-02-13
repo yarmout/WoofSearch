@@ -1,50 +1,91 @@
-# React + TypeScript + Vite
+# 🐾 WoofSearch
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **WoofSearch**, where you can find your perfect canine companion! This is a React application built with **TypeScript** and powered by **Vite** for a fast and modern development experience.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Login system to access **WoofSearch**
+- Search system to browse available dogs
+- Match system to match you an available dog
+- Fast and smooth user experience powered by Vite
+- Leverages **React Router** for navigation and **Axios** for API communication
+- Sleek and responsive design
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🚀 Quick Start
 
-- Configure the top-level `parserOptions` property like this:
+Follow these steps to set up the project and run it locally:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1️⃣ Clone the Repository
+
+```bash
+git clone <repository-url>
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2️⃣ Navigate to the Project Directory
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+cd <repository-folder-name>
 ```
+
+### 3️⃣ Install Dependencies
+
+Install all necessary dependencies with:
+
+```bash
+npm install
+```
+
+### 4️⃣ Start the Development Server
+
+Run the following command:
+
+```bash
+npm run dev
+```
+
+The application will be available in your browser at `http://localhost:5173` (check your terminal for the exact URL).
+
+---
+
+## 🗂️ Project Structure
+
+Here’s an overview of the main structure of the project:
+
+```bash
+.
+├── public/                  # Public static files
+├── src/                     # Source code
+│   ├── assets/              # Assets like background images
+│   ├── pages/               # Pages like LoginPage
+│   ├── styles/              # CSS files
+│   └── App.tsx              # Main app entry file
+├── index.html               # HTML template
+├── vite.config.ts           # Vite configuration
+├── tsconfig.json            # TypeScript configuration
+├── package.json             # Dependencies and npm scripts
+├── vercel.json              # Deployment rewrites for Vercel
+```
+
+
+---
+
+## 💾 Preview
+
+Here’s a sneak peek of how it looks:
+
+![Login Preview](placeholder)
+
+---
+
+
+## 🛠️ Tech Stack
+
+- **React**: Frontend library
+- **TypeScript**: Strict typing for better reliability
+- **Vite**: Lightning-fast development environment
+- **Axios**: For API communication
+- **React Router**: Routing across different pages
+
+---
