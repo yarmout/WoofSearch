@@ -2,6 +2,10 @@
 
 Welcome to **WoofSearch**, where you can find your perfect canine companion! This is a React application built with **TypeScript** and powered by **Vite** for a fast and modern development experience.
 
+## 🎯 Project Overview  
+WoofSearch was developed as part of a technical assessment for **Fetch Rewards**. The objective was to create a user-friendly platform to help dog lovers find their ideal pet. This project showcases skills in React, TypeScript, and API integration while prioritizing performance and user experience.  
+
+
 ## ✨ Features
 
 - Login system to access **WoofSearch**
