@@ -73,9 +73,16 @@ Here’s an overview of the main structure of the project:
 
 ## 💾 Preview
 
-Here’s a preview of the login page:
+Check out the live demo at [https://woof-search.vercel.app/](https://woof-search.vercel.app/)
+
+Here’s a preview of the login page, search page, and dog details page:
 
 ![Login Preview](https://github.com/user-attachments/assets/c5445c0b-580a-4ac8-9861-8e6af88c6a58)
+
+![Search Preview](https://github.com/user-attachments/assets/57c77668-efd1-4596-b3d2-1392a9351f67)
+
+![Details Preview](https://github.com/user-attachments/assets/7ef4fa0c-ead4-4077-9539-9731fbd74d22)
+
 
 
 ---
