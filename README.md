@@ -71,10 +71,15 @@ Here’s an overview of the main structure of the project:
 
 ---
 
+## 🚀 Live Demo  
+Explore WoofSearch live at [https://woof-search.vercel.app/](https://woof-search.vercel.app/)
+
+### 🔑 Demo Login  
+To explore the application, use the following demo account:  
+- **Name**: WoofSearch
+- **Email**: rex@woofsearch.com
+
 ## 💾 Preview
-
-Check out the live demo at [https://woof-search.vercel.app/](https://woof-search.vercel.app/)
-
 Here’s a preview of the login page, search page, and dog details page:
 
 ![Login Preview](https://github.com/user-attachments/assets/c5445c0b-580a-4ac8-9861-8e6af88c6a58)
