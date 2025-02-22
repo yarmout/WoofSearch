@@ -17,6 +17,26 @@ WoofSearch was developed as part of a technical assessment for **Fetch Rewards**
 
 ---
 
+## 🚀 Live Demo  
+Explore WoofSearch live at [https://woof-search.vercel.app/](https://woof-search.vercel.app/)
+
+### 🔑 Demo Login  
+To explore the application, use the following demo account:  
+- **Name**: WoofSearch
+- **Email**: rex@woofsearch.com
+
+## 💾 Preview
+Here’s a preview of the login page, search page, and dog details page:
+
+![Login Preview](https://github.com/user-attachments/assets/c5445c0b-580a-4ac8-9861-8e6af88c6a58)
+
+![Search Preview](https://github.com/user-attachments/assets/57c77668-efd1-4596-b3d2-1392a9351f67)
+
+![Details Preview](https://github.com/user-attachments/assets/7ef4fa0c-ead4-4077-9539-9731fbd74d22)
+
+---
+
+
 ## 🚀 Quick Start
 
 Follow these steps to set up the project and run it locally:
@@ -75,26 +95,6 @@ Here’s an overview of the main structure of the project:
 
 ---
 
-## 🚀 Live Demo  
-Explore WoofSearch live at [https://woof-search.vercel.app/](https://woof-search.vercel.app/)
-
-### 🔑 Demo Login  
-To explore the application, use the following demo account:  
-- **Name**: WoofSearch
-- **Email**: rex@woofsearch.com
-
-## 💾 Preview
-Here’s a preview of the login page, search page, and dog details page:
-
-![Login Preview](https://github.com/user-attachments/assets/c5445c0b-580a-4ac8-9861-8e6af88c6a58)
-
-![Search Preview](https://github.com/user-attachments/assets/57c77668-efd1-4596-b3d2-1392a9351f67)
-
-![Details Preview](https://github.com/user-attachments/assets/7ef4fa0c-ead4-4077-9539-9731fbd74d22)
-
-
-
----
 
 
 ## 🛠️ Tech Stack
