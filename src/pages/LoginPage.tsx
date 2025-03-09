@@ -18,7 +18,7 @@ function LoginPage() {
             );
             navigate("/search");
         } catch {
-            alert("Something went wrong. Please try again later.");
+            alert("Something went wrong. Unable to login. Please try again later.");
         }
     };
 

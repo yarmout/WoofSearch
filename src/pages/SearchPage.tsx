@@ -30,8 +30,8 @@ function SearchPage() {
                     { withCredentials: true }
                 );
                 setBreeds(response.data);
-            } catch (error) {
-                alert('Something went wrong. Please try again later.');
+            } catch  {
+                alert('Something went wrong. Unable to fetch breeds. Please try again later.');
             }
         })();
     }, []);
@@ -56,8 +56,8 @@ function SearchPage() {
 
                 const dogIds = response.data.resultIds;
                 await fetchDogsByIds(dogIds);
-            } catch (error) {
-                alert('Something went wrong. Please try again later.');
+            } catch {
+                alert('Something went wrong. Unable to fetch dogs. Please try again later.');
             }
         })();
     }, [selectedBreeds, sortDirection]);
@@ -71,8 +71,8 @@ function SearchPage() {
                 { withCredentials: true }
             );
             setDogs(dogDetailsResponse.data);
-        } catch (error) {
-            alert('Something went wrong. Please try again later.');
+        } catch {
+            alert('Something went wrong. Unable to fetch dogs by id. Please try again later.');
         }
     }
 
@@ -91,8 +91,8 @@ function SearchPage() {
 
             const dogIds = response.data.resultIds;
             await fetchDogsByIds(dogIds);
-        } catch (error) {
-            alert('Something went wrong. Please try again later.');
+        } catch {
+            alert('Something went wrong. Unable to visit next page. Please try again later.');
         }
     }
 
@@ -110,8 +110,8 @@ function SearchPage() {
 
             const dogIds = response.data.resultIds;
             await fetchDogsByIds(dogIds);
-        } catch (error) {
-            alert('Something went wrong. Please try again later.');
+        } catch {
+            alert('Something went wrong. Unable to visit previous page. Please try again later.');
         }
     }
 
@@ -152,8 +152,8 @@ function SearchPage() {
                 `_blank`,
                 "noopener, noreferrer"
             );
-        } catch (error) {
-            alert('Something went wrong. Please try again later.');
+        } catch {
+            alert('Something went wrong. Unable to generate match. Please try again later.');
         }
     }
 
