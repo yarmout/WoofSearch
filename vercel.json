@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/api/(.*)",
+      "destination": "https://frontend-take-home-service.fetch.com/$1"
+    }
   ]
 }

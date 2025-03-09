@@ -10,13 +10,15 @@ function LoginPage() {
 
     const handleLogin = async () => {
         try {
-            await axios.post("https://frontend-take-home-service.fetch.com/auth/login",
+            // Use /api route for proxied requests
+            await axios.post(
+                "/api/auth/login", // Proxy will forward this correctly
                 { name, email },
                 { withCredentials: true }
             );
             navigate("/search");
-        } catch (error) {
-            alert('Something went wrong. Please try again later.');
+        } catch {
+            alert("Something went wrong. Please try again later.");
         }
     };
 
